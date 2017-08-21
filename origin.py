@@ -11,11 +11,13 @@ with open('Book1.csv','rb') as csvfile:
         n.append(row);
 i=0
 
+#print n
+
 for i in range(0, len(n)):
     for k in n[i]:
         n1.append(float(k)) 
     
-print n1
+#print n1
 
 
 
@@ -30,7 +32,7 @@ for i in range(0, len(z)):
     for m in z[i]:
         i1.append(float(m))
 
-print i1
+#print i1
 
 
 n = []
@@ -45,7 +47,7 @@ for i in range(0, len(n)):
     for k in n[i]:
         n2.append(float(k))
  
-print n2
+#print n2
 
 z = []
 i2 = []
@@ -59,11 +61,63 @@ for i in range(0, len(z)):
     for m in z[i]:
         i2.append(float(m))
 
-print i2
+n=[]
+n3=[]
 
-X = np.array([n1,i1])
-Y = np.array([1,0])
+with open('Normal/n1.csv','rb') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=' ',quotechar='|')
+    for row in spamreader:
+        n.append(row);
+
+for i in range(0, len(n1)):
+    for m in n[i]:
+        n3.append(float(m))
+
+#print n3
+
+#print i2
+
+z=[]
+i3=[]
+
+with open('insomniac/i1.csv','rb') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=' ',quotechar='|')
+    for row in spamreader:
+        z.append(row);
+
+for i in range(0, len(n1)):
+    for m in z[i]:
+        i3.append(float(m))
+
+a = []
+b = []
+c = []
+d = []
+e = []
+f=[]
+	
+for i in range(0, (len(n1)-1)):
+    a.append(n1[i+1]-n1[i])
+    b.append(i1[i+1]-i1[i])
+    c.append(n2[i+1]-n2[i])
+    d.append(i2[i+1]-i2[i])
+    e.append(n3[i+1]-n3[i])
+    f.append(i3[i+1]-i3[i])
+
+#for i in range(0, (len(n1-1)):
+
+#print a
+#print b
+#print c
+#print d
+#b.append(0.0)
+#d.append(0.0)
+
+#print f
+
+X = np.array([d,e,f])
+Y = np.array([2,1,2])
 
 clf = GaussianNB()
 clf.fit(X,Y)
-print clf.predict([n2,i2])
+print clf.predict([c,b])                                 
